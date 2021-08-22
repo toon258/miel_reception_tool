@@ -11,7 +11,7 @@ function submitReception() {
   console.log(formResponses);
 
   //ミエルのメールアドレス
-  var mielEMail ='miel.okurayama@gmail.com'
+  var mielEMail ='**************@**************'
 
   //品数チェック
   if (checkCount(mielForm,mielApplication,formResponses)){
@@ -19,8 +19,6 @@ function submitReception() {
     mielForm.setAcceptingResponses(false);
     console.log("フォームを受付終了にします");
   }
-
-  //TBD：売り切れにならない場合にも申込期限を迎えたら終了できるように
 
   //申込受付後の通知
   sendMailtoMiel(mielForm,mielApplication,newResponse,mielEMail);
