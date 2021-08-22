@@ -28,7 +28,13 @@ https://docs.google.com/spreadsheets/d/1_7gn1R2TBbweu9Fhy9Uz-nh2s0-9Tznd87B8kk59
 
 https://forms.gle/BoYNguWb8aCY1Cv36
 
-スクリプトエディタに「フォーム送信時.gs」を追加
+スクリプトエディタに「フォーム１送信時.gs」を追加
 
-必要に応じてフォーム２，３を作成
+必要に応じて同じフォームを作成、それぞれのスクリプトエディタに「フォーム２送信時.gs」「フォーム３送信時.gs」を追加
+
+### ３．IDの設定（スクリプトエディタ）
+設置したすべてのソースコードにて、openByIdで作成したSpreadsheet・FormのファイルIDを記入
+
+「フォームN送信時.gs」にて、送信先メールアドレスを記入
+
 
