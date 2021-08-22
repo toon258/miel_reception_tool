@@ -1,5 +1,5 @@
 //*** メイン処理 ***//
-function submitReception2() {
+function submitReception2(e) {
   //フォーム２
   var mielForm = FormApp.openById('********************************************');
   var mielApplication = SpreadsheetApp.openById('********************************************');
@@ -7,8 +7,8 @@ function submitReception2() {
   //回答内容
   var lastRow = mielApplication.getSheetByName('フォーム(2)').getLastRow();
   var formResponses = mielApplication.getSheetByName('フォーム(2)').getRange(2,1,lastRow-1,8).getValues();
-  var newResponse = mielApplication.getSheetByName('フォーム(2)').getRange(lastRow,1,1,8).getValues();
-  console.log(formResponses);
+  var newResponse = e.response;
+  console.log("formResponses："+formResponses);
 
   //ミエルのメールアドレス
   var mielEMail ='***********@**********'
@@ -73,12 +73,12 @@ function sendMailtoMiel(mielForm,mielApplication,newResponse,mielEMail){
   var mailAddress = mielApplication.getSheetByName('【管理】').getRange("H5").getValue();
   var zan = Number(max)-Number(current);
 
-  var reception = "受付時刻："+newResponse[0][0]+"\n";
-  var name = "お名前："+newResponse[0][3]+"さん\n";
-  var count = "個数："+newResponse[0][4]+"個\n";
-  var pay = "支払い方法："+newResponse[0][5]+"\n";
-  var hour ="受け取り時間："+newResponse[0][6]+"\n";
-  var remarks ="備考："+newResponse[0][7]+"\n";
+  var reception = "受付時刻："+Utilities.formatDate(newResponse.getTimestamp(),'Asia/Tokyo', 'yyyy年MM月dd日 hh:mm')+"\n";
+  var name = "お名前："+newResponse.getItemResponses()[1].getResponse()+"さん\n";
+  var count = "個数："+newResponse.getItemResponses()[2].getResponse()+"個\n";
+  var pay = "支払い方法："+newResponse.getItemResponses()[3].getResponse()+"\n";
+  var hour ="受け取り時間："+newResponse.getItemResponses()[4].getResponse()+"\n";
+  var remarks ="備考："+newResponse.getItemResponses()[5].getResponse()+"\n";
 
   //メール送信
   var mailTitle = date + ' '+ formTitle;
